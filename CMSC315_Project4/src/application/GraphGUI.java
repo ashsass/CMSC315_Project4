@@ -30,6 +30,7 @@ public class GraphGUI extends Application {
 			//add the top and bottom border to the pane
 			//graphview.getChildren().add(getTopBorder());
 			graphView.setTop(getTopBorder());
+			graphView.setBottom(getBottomBorder());
 			
 			Scene scene = new Scene(graphView, 500, 500);
 			primaryStage.setTitle("Project 4: Graph GUI");
@@ -89,6 +90,8 @@ public class GraphGUI extends Application {
 		TextField tfMessage = new TextField();
 		tfMessage.setEditable(false);
 		
+		/* add buttons and tf to pane */
+		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs, tfMessage);
 		
 		return hBox;
 	}
