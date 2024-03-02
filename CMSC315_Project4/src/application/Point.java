@@ -28,5 +28,15 @@ public class Point {
 		this.name = name;
 	}
 	
-
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
+	public String getName() {
+		return name;
+	}
 }
