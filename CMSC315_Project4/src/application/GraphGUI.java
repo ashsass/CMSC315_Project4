@@ -74,11 +74,16 @@ public class GraphGUI extends Application {
 	}
 	
 	//Should I do two hboxes for the bottom layer? there is just one text field under four buttons that takes up the full width or can I manage it with one hbox
-	public HBox getBottomBorder() {
-		/* create hbox */
+	public VBox getBottomBorder() {
+		//instead create a vbox that holds buttons on one level and the text field on the next level and set that to bottom border
+		/* create hbox to hold buttons*/
 		HBox hBox = new HBox(15);
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(new Insets(15, 15, 15, 15));
+		
+		/* create vbox to hold hbox and tf */
+		VBox vBox = new VBox(15);
+		
 		
 		/* create buttons */
 		Button btnConnected = new Button("Is Connected?");
@@ -88,11 +93,15 @@ public class GraphGUI extends Application {
 		
 		/* create large text field to display message */
 		TextField tfMessage = new TextField();
+		//tfMessage.setPrefWidth(Double.MAX_VALUE);
 		tfMessage.setEditable(false);
 		
-		/* add buttons and tf to pane */
-		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs, tfMessage);
+		/* add buttons to hbox */
+		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs);
 		
-		return hBox;
+		/* add hbox and tfmessage to vbox */
+		vBox.getChildren().addAll(hBox, tfMessage);
+		
+		return vBox;
 	}
 }
