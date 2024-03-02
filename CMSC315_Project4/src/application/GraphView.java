@@ -12,6 +12,7 @@ package application;
 	- [ ] a method that is called to draw edges. 
  */
 
+//Start in graphview to begin creating the pane style 
 public class GraphView {
 
 }
