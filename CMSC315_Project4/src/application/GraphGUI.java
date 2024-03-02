@@ -71,4 +71,25 @@ public class GraphGUI extends Application {
 		
 		return hBox;
 	}
+	
+	//Should I do two hboxes for the bottom layer? there is just one text field under four buttons that takes up the full width or can I manage it with one hbox
+	public HBox getBottomBorder() {
+		/* create hbox */
+		HBox hBox = new HBox(15);
+		hBox.setAlignment(Pos.CENTER);
+		hBox.setPadding(new Insets(15, 15, 15, 15));
+		
+		/* create buttons */
+		Button btnConnected = new Button("Is Connected?");
+		Button btnCycles = new Button("Has Cycles?");
+		Button btnDfs = new Button("Depth First Search");
+		Button btnBfs = new Button("Breadth First Search");
+		
+		/* create large text field to display message */
+		TextField tfMessage = new TextField();
+		tfMessage.setEditable(false);
+		
+		
+		return hBox;
+	}
 }

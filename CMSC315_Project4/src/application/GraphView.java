@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 /*
 THOUGHTS
 - probably need to create a limit of where the user can place points - don't want it going to where the buttons are in the border
+- potienal problem with trying to get the text field information will probably need to change where the variable gets created? definitely something that will come up later 
  */
 
 public class GraphView extends BorderPane{
