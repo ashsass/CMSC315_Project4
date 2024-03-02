@@ -16,6 +16,7 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
 
@@ -36,5 +37,12 @@ public class GraphGUI extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	
+	public HBox getTopBorder() {
+		HBox hbox = new HBox(15);
+		hbox.getChildren().add(new Button("Add Edge"));
+		return hbox;
 	}
 }

@@ -27,10 +27,6 @@ public class GraphView extends BorderPane{
 		
 	}
 	
-	public HBox getTopBorder() {
-		HBox hbox = new HBox(15);
-		hbox.getChildren().add(new Button("Add Edge"));
-		return hbox;
-	}
+	 
 
 }
