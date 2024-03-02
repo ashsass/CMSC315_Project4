@@ -16,13 +16,22 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.*;
 
 
 public class GraphGUI extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		
+		try {
+			GraphView graphview = new GraphView();
+			Scene scene = new Scene(graphview, 500, 800);
+			primaryStage.setTitle("Project 4: Graph GUI");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		}
+		catch(Exception ex) {
+			System.out.print(ex);
+		}
 	}
 	
 	public static void main(String[] args) {

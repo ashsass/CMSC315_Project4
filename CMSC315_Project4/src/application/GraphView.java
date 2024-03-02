@@ -5,6 +5,8 @@
  */
 
 package application;
+import javafx.application.Application;
+import javafx.scene.layout.*;
 
 /*
   The third class is should be an extension of the javafx Pane class that visually displays the graph. It should contain 
@@ -13,6 +15,12 @@ package application;
  */
 
 //Start in graphview to begin creating the pane style 
-public class GraphView {
+//I think border pane would work better for how the gui needs to look 
+public class GraphView extends BorderPane{
+	
+	/* no-arg constructor */
+	public GraphView() {
+		
+	}
 
 }
