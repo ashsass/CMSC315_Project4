@@ -5,6 +5,13 @@
  */
 
 package application;
+
+/*
+- [ ] The fourth class should contain 
+	- [ ] the main method
+	- [ ] should create the GUI including all the buttons and text fields. 
+	- [ ] It should include event handlers for each of the buttons. 
+ */
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
