@@ -16,7 +16,7 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
 
@@ -47,10 +47,19 @@ public class GraphGUI extends Application {
 	
 	
 	public HBox getTopBorder() {
+		/* creating hbox */
 		HBox hBox = new HBox(15);
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(new Insets(15, 15, 15, 15));
+		
+		/* add in buttons and text fields */
 		hBox.getChildren().add(new Button("Add Edge"));
+		
+		//Vertex 1
+		hBox.getChildren().add(new Label("Vertex 1"));
+		TextField tfVertexOne = new TextField(); //need to create a variable so we can target it later
+		hBox.getChildren().add(tfVertexOne);
+		
 		return hBox;
 	}
 }
