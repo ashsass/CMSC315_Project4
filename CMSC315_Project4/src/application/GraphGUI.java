@@ -32,7 +32,7 @@ public class GraphGUI extends Application {
 			graphView.setTop(getTopBorder());
 			graphView.setBottom(getBottomBorder());
 			
-			Scene scene = new Scene(graphView, 500, 500);
+			Scene scene = new Scene(graphView, 550, 600);
 			primaryStage.setTitle("Project 4: Graph GUI");
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -81,11 +81,6 @@ public class GraphGUI extends Application {
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(new Insets(0, 0, 10, 0));
 		
-		/* create vbox to hold hbox and tf */
-		//VBox vBox = new VBox(15);
-		VBox vBox = new VBox(0); //this helped with the spacing issue I was having
-		vBox.setPadding(new Insets(15, 15, 15, 15));
-		
 		/* create buttons */
 		Button btnConnected = new Button("Is Connected?");
 		Button btnCycles = new Button("Has Cycles?");
@@ -94,18 +89,14 @@ public class GraphGUI extends Application {
 		
 		/* create large text field to display message */
 		TextField tfMessage = new TextField();
-		//tfMessage.setPrefWidth(Double.MAX_VALUE);
 		tfMessage.setEditable(false);
 		
 		/* add buttons to hbox */
 		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs);
 		
 		/* add hbox and tfmessage to vbox */
-		vBox.getChildren().add(hBox);
-		//vBox.setMargin(hBox, new Insets(0, 0, 0, 0));
-		vBox.getChildren().add(tfMessage);
-		//vBox.setMargin(tfMessage, new Insets(0, 0, 0, 15));
-		//System.out.println(vBox.getSpacing());
+		VBox vBox = new VBox(hBox, tfMessage); 
+		vBox.setPadding(new Insets(15, 30, 30, 30));
 		
 		return vBox;
 	}
