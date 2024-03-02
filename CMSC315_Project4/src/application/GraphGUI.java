@@ -56,9 +56,18 @@ public class GraphGUI extends Application {
 		hBox.getChildren().add(new Button("Add Edge"));
 		
 		//Vertex 1
-		hBox.getChildren().add(new Label("Vertex 1"));
+		//hBox.getChildren().add(new Label("Vertex 1"));
 		TextField tfVertexOne = new TextField(); //need to create a variable so we can target it later
-		hBox.getChildren().add(tfVertexOne);
+		tfVertexOne.prefWidth(50);
+		tfVertexOne.maxWidth(50);
+		
+		//Vertex 2
+		//hBox.getChildren().add(new Label("Vertex 2"));
+		TextField tfVertexTwo = new TextField(); //need to create a variable so we can target it later
+		
+		//Add fields to HBox
+		hBox.getChildren().addAll(new Label("Vertex 1"), tfVertexOne, 
+				new Label("Vertex 2"), tfVertexTwo);
 		
 		return hBox;
 	}
