@@ -13,5 +13,20 @@ package application;
 */
 
 public class Point {
+	private double x;
+	private double y;
+	private String name;
+	
+	/* no-arg constructor */
+	public Point() {
+		
+	}
+	
+	public Point(double x, double y, String name) {
+		this.x = x;
+		this.y = y;
+		this.name = name;
+	}
+	
 
 }
