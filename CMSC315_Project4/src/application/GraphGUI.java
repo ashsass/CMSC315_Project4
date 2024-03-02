@@ -24,7 +24,7 @@ public class GraphGUI extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			GraphView graphview = new GraphView();
-			Scene scene = new Scene(graphview, 500, 800);
+			Scene scene = new Scene(graphview, 500, 500);
 			primaryStage.setTitle("Project 4: Graph GUI");
 			primaryStage.setScene(scene);
 			primaryStage.show();
