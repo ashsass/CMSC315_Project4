@@ -18,14 +18,20 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.geometry.*;
 
 
 public class GraphGUI extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			GraphView graphview = new GraphView();
-			Scene scene = new Scene(graphview, 500, 500);
+			GraphView graphView = new GraphView();
+			
+			//add the top and bottom border to the pane
+			//graphview.getChildren().add(getTopBorder());
+			graphView.setTop(getTopBorder());
+			
+			Scene scene = new Scene(graphView, 500, 500);
 			primaryStage.setTitle("Project 4: Graph GUI");
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -41,8 +47,10 @@ public class GraphGUI extends Application {
 	
 	
 	public HBox getTopBorder() {
-		HBox hbox = new HBox(15);
-		hbox.getChildren().add(new Button("Add Edge"));
-		return hbox;
+		HBox hBox = new HBox(15);
+		hBox.setAlignment(Pos.CENTER);
+		hBox.setPadding(new Insets(15, 15, 15, 15));
+		hBox.getChildren().add(new Button("Add Edge"));
+		return hBox;
 	}
 }

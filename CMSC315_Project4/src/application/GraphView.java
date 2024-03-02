@@ -5,7 +5,6 @@
  */
 
 package application;
-import javafx.application.Application;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
