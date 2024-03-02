@@ -79,11 +79,12 @@ public class GraphGUI extends Application {
 		/* create hbox to hold buttons*/
 		HBox hBox = new HBox(15);
 		hBox.setAlignment(Pos.CENTER);
-		hBox.setPadding(new Insets(15, 15, 15, 15));
+		hBox.setPadding(new Insets(0, 0, 10, 0));
 		
 		/* create vbox to hold hbox and tf */
-		VBox vBox = new VBox(15);
-		
+		//VBox vBox = new VBox(15);
+		VBox vBox = new VBox(0); //this helped with the spacing issue I was having
+		vBox.setPadding(new Insets(15, 15, 15, 15));
 		
 		/* create buttons */
 		Button btnConnected = new Button("Is Connected?");
@@ -100,7 +101,11 @@ public class GraphGUI extends Application {
 		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs);
 		
 		/* add hbox and tfmessage to vbox */
-		vBox.getChildren().addAll(hBox, tfMessage);
+		vBox.getChildren().add(hBox);
+		//vBox.setMargin(hBox, new Insets(0, 0, 0, 0));
+		vBox.getChildren().add(tfMessage);
+		//vBox.setMargin(tfMessage, new Insets(0, 0, 0, 15));
+		//System.out.println(vBox.getSpacing());
 		
 		return vBox;
 	}
