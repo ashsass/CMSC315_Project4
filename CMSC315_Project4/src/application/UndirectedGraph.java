@@ -17,6 +17,15 @@ package application;
 	- [ ] You may add any other methods as needed. 
  */
 
+//Want to create the method to add vertices
+//Thinking the mouse will click and it will use that point at the x, y coord to create a point and name it whatever 
+//And the points could be stored in a list to keep track of them (the adjacency list for the graph) - should i pull from that to make the javafx circles? maybe not because i won't need to remove themn so i dont really need to keep track of them? something to think about it i run into problems 
+
 public class UndirectedGraph {
+	
+	/* no-constructor */
+	public UndirectedGraph() {
+		
+	}
 
 }

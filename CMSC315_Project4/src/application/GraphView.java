@@ -22,6 +22,8 @@ THOUGHTS
 - Don't want the screen to be resizable
  */
 
+
+//Working on adding an event listener to create new vertices and in undirected graph using the method there to actually create the points 
 public class GraphView extends BorderPane{
 	
 	/* no-arg constructor */
