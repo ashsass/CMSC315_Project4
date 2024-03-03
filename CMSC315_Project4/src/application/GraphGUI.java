@@ -26,11 +26,12 @@ public class GraphGUI extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			GraphView graphView = new GraphView();
+			//Pane centerTest = new Pane();
 			
 			//add the top and bottom border to the pane
-			//graphview.getChildren().add(getTopBorder());
 			graphView.setTop(getTopBorder());
 			graphView.setBottom(getBottomBorder());
+			//graphView.setCenter(centerTest);
 			
 			Scene scene = new Scene(graphView, 550, 600);
 			primaryStage.setTitle("Project 4: Graph GUI");
@@ -69,7 +70,7 @@ public class GraphGUI extends Application {
 		//Add fields to HBox
 		hBox.getChildren().addAll(new Label("Vertex 1"), tfVertexOne, 
 				new Label("Vertex 2"), tfVertexTwo);
-		
+	
 		return hBox;
 	}
 	

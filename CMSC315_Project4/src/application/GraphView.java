@@ -14,22 +14,20 @@ import javafx.scene.text.*;
 
 /*
   The third class is should be an extension of the javafx Pane class that visually displays the graph. It should contain 
-	- [ ] an event handler that responds to mouse clicks that creates new vertices
+	- [x] an event handler that responds to mouse clicks that creates new vertices
+		- where is the best place for it in the code? in the constructor?
 	- [ ] a method that is called to draw edges. 
  */
 
 /*
 THOUGHTS 
-- probably need to create a limit of where the user can place points - don't want it going to where the buttons are in the border
 - potienal problem with trying to get the text field information will probably need to change where the variable gets created? definitely something that will come up later 
 - Maybe using grid pane would be better than border pane?? would it matter when it comes to placing actual vertices? 
 - Don't want the screen to be resizable
  */
 
+//IDEA: set our pane to the center borderpane and then use that width and height to test if the mouse is clicking in a useable area 
 
-//Working on adding an event listener to create new vertices and in undirected graph using the method there to actually create the points - where exactly should the event listener go?
-//get a point returned from the graph to create a circle and display it on the pane
-//also need to figure out how to set this on the border pane - just setcenter? 
 public class GraphView extends BorderPane{
 	
 	/* no-arg constructor */
@@ -38,16 +36,22 @@ public class GraphView extends BorderPane{
 		
 		/* get coordinates for point */
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
+			@Override 
 			public void handle(MouseEvent event) {
+				//The center portion's height is 437
+				//top border height is 0 - 50 
+				//bottom border height is 498 - 600
 				if(event.getButton() == MouseButton.PRIMARY) {
 					double x = event.getSceneX();
 					double y = event.getSceneY();
-					//create a new point and turn it into a circle
-					//this seems like i'm going about this in an inefficient way???
-					Point newPoint = graph.addVertex(x, y);
-					getChildren().addAll(new Circle(x, y, 5.0),
-							new Text(x - 5, y - 10, newPoint.getName()));
+					//keeping x and y within center border
+					if(y > 50 && y < 498) {
+						//create a new point and turn it into a circle
+						//this seems like i'm going about this in an inefficient way???
+						Point newPoint = graph.addVertex(x, y);
+						getChildren().addAll(new Circle(x, y, 5.0),
+								new Text(x - 5, y - 10, newPoint.getName()));
+					}
 				}
 			}
 		});
