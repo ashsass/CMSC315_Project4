@@ -32,11 +32,8 @@ public class GraphView extends BorderPane{
 	/* no-arg constructor */
 	public GraphView() {
 		UndirectedGraph graph = new UndirectedGraph();
-		
-		/* get coordinates for point */
-		setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override 
-			public void handle(MouseEvent event) {
+		/* mouse click event listener for x, y points */
+		setOnMouseClicked(event ->  {
 				//The center portion's height is 437
 				//top border height is 0 - 50 
 				//bottom border height is 498 - 600
@@ -52,10 +49,12 @@ public class GraphView extends BorderPane{
 								new Text(x - 5, y - 10, newPoint.getName()));
 					}
 				}
-			}
 		});
 	}
 	
-	 
+	 public void drawEdge(String v1, String v2) {
+		 //If in lower case change to upper case 
+		 //Validate that the vertices exist
+	 }
 
 }
