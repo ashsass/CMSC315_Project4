@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.shape.*;
+import javafx.scene.text.*;
 
 /*
   The third class is should be an extension of the javafx Pane class that visually displays the graph. It should contain 
@@ -45,7 +46,8 @@ public class GraphView extends BorderPane{
 					//create a new point and turn it into a circle
 					//this seems like i'm going about this in an inefficient way???
 					Point newPoint = graph.addVertex(x, y);
-					getChildren().add(new Circle(newPoint.getX(), newPoint.getY(), 5.0));
+					getChildren().addAll(new Circle(x, y, 5.0),
+							new Text(x - 5, y - 10, newPoint.getName()));
 				}
 			}
 		});
