@@ -27,5 +27,12 @@ public class UndirectedGraph {
 	public UndirectedGraph() {
 		
 	}
-
+	
+	public Point addVertex(double x, double y) {
+		//need to keep track of points that are added
+		//pull from the information taken from the mouse click to create a point
+		//Maybe return the point so it can be added to a list and used to create a cirlce to add to pane 
+		
+		return null;
+	}
 }
