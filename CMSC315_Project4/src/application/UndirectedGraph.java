@@ -27,10 +27,7 @@ public class UndirectedGraph {
 	
 	/* no-constructor */
 	public UndirectedGraph() {
-		createName();
-		createName();
-		createName();
-		createName();
+		
 	}
 	
 	public Point addVertex(double x, double y) {
@@ -48,12 +45,16 @@ public class UndirectedGraph {
 	
 	public String createName() {
 		//Just focus on getting the name to go through the alphabet each time its called 
-		//A = 65 and Z = 90
-		char name = (char)('A' + index);//uses index from global data field to create names through alphabet
+		//uses index from global data field to create names through alphabet and uses modulo to control the values to only go from A to Z
+		char name = (char)('A' + index % 26);
+		//Also want to control the suffix so that we can have an infinite amount of labels
+		int suffix = index / 26 + 1;
 		index++;
 		
-		
-		
-		return String.valueOf(name);
+		//want to stop the count if it is at 0 and start again and add on a value
+		if(suffix == 1) 
+			return String.valueOf(name);
+		else
+			return String.valueOf(name) + suffix;
 	}
 }
