@@ -6,10 +6,10 @@
 
 package application;
 /*
-- [ ] The first class should be an immutable class that defines a vertex of the graph
-- [ ] contains the _x_ and _y_ coordinates of the vertex
-- [ ] contains the name of the vertex.
-- [ ] It should have a constructor and three getter methods. 
+- [x] The first class should be an immutable class that defines a vertex of the graph
+- [x] contains the _x_ and _y_ coordinates of the vertex
+- [x] contains the name of the vertex.
+- [x] It should have a constructor and three getter methods. 
 */
 
 public class Point {
