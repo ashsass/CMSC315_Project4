@@ -8,8 +8,8 @@ package application;
 
 /*
 - [ ] The fourth class should contain 
-	- [ ] the main method
-	- [ ] should create the GUI including all the buttons and text fields. 
+	- [x] the main method
+	- [x] should create the GUI including all the buttons and text fields. 
 	- [ ] It should include event handlers for each of the buttons. 
  */
 	

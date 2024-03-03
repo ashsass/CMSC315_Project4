@@ -17,6 +17,33 @@ package application;
 	- [ ] You may add any other methods as needed. 
  */
 
-public class UndirectedGraph {
 
+public class UndirectedGraph {
+	private int index = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
+	
+	/* no-constructor */
+	public UndirectedGraph() {
+		
+	}
+	
+	public Point addVertex(double x, double y) {
+		String name = createName();
+		
+		//create a new point
+		return new Point(x, y, name);	
+		//Not really doing anything with this at this point just using it to create a circle in graph view will probably need to store it in a list to create the actual graph
+	}
+	
+	public String createName() {
+		//uses index from global data field to create names through alphabet and uses modulo to control the values to only go from A to Z
+		char name = (char)('A' + index % 26);
+		//Also want to control the suffix so that we can have an infinite amount of labels
+		int suffix = index / 26;
+		index++;
+		
+		if(suffix == 0) 
+			return String.valueOf(name);
+		else
+			return String.valueOf(name) + suffix;
+	}
 }
