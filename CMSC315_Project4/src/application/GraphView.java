@@ -26,7 +26,6 @@ THOUGHTS
 - Don't want the screen to be resizable
  */
 
-//IDEA: set our pane to the center borderpane and then use that width and height to test if the mouse is clicking in a useable area 
 
 public class GraphView extends BorderPane{
 	
