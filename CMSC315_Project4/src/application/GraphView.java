@@ -8,8 +8,8 @@ package application;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
+import javafx.scene.shape.*;
 
 /*
   The third class is should be an extension of the javafx Pane class that visually displays the graph. It should contain 
@@ -33,12 +33,19 @@ public class GraphView extends BorderPane{
 	
 	/* no-arg constructor */
 	public GraphView() {
+		UndirectedGraph graph = new UndirectedGraph();
+		
+		/* get coordinates for point */
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				if(event.getButton() == MouseButton.PRIMARY) {
 					double x = event.getSceneX();
 					double y = event.getSceneY();
+					//create a new point and turn it into a circle
+					//this seems like i'm going about this in an inefficient way???
+					Point newPoint = graph.addVertex(x, y);
+					getChildren().add(new Circle(newPoint.getX(), newPoint.getY(), 5.0));
 				}
 			}
 		});

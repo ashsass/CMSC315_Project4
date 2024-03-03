@@ -22,10 +22,15 @@ package application;
 //And the points could be stored in a list to keep track of them (the adjacency list for the graph) - should i pull from that to make the javafx circles? maybe not because i won't need to remove themn so i dont really need to keep track of them? something to think about it i run into problems 
 
 public class UndirectedGraph {
+	private int index = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
+	//this doesn't seem great tbh maybe research a better way to get the name or at least make this private and use a getter/setter???
 	
 	/* no-constructor */
 	public UndirectedGraph() {
-		
+		createName();
+		createName();
+		createName();
+		createName();
 	}
 	
 	public Point addVertex(double x, double y) {
@@ -33,6 +38,22 @@ public class UndirectedGraph {
 		//pull from the information taken from the mouse click to create a point
 		//Maybe return the point so it can be added to a list and used to create a cirlce to add to pane 
 		
-		return null;
+
+		//need to name it something also - maybe bring this into its own function?
+		String name = createName();
+		
+		//create a new point
+		return new Point(x, y, name);		
+	}
+	
+	public String createName() {
+		//Just focus on getting the name to go through the alphabet each time its called 
+		//A = 65 and Z = 90
+		char name = (char)('A' + index);//uses index from global data field to create names through alphabet
+		index++;
+		
+		
+		
+		return String.valueOf(name);
 	}
 }
