@@ -6,6 +6,9 @@
 
 package application;
 import javafx.scene.layout.*;
+
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
@@ -27,7 +30,9 @@ THOUGHTS
  */
 
 
-public class GraphView extends BorderPane{
+public class GraphView extends BorderPane {
+	//the index indicates the name of the point - this could be useful
+	ArrayList<Point> vertexList = new ArrayList<>();
 	
 	/* no-arg constructor */
 	public GraphView() {
@@ -45,6 +50,7 @@ public class GraphView extends BorderPane{
 						//create a new point and turn it into a circle
 						//this seems like i'm going about this in an inefficient way???
 						Point newPoint = graph.addVertex(x, y);
+						vertexList.add(newPoint);
 						getChildren().addAll(new Circle(x, y, 5.0),
 								new Text(x - 5, y - 10, newPoint.getName()));
 					}
@@ -55,6 +61,14 @@ public class GraphView extends BorderPane{
 	 public void drawEdge(String v1, String v2) {
 		 //If in lower case change to upper case 
 		 //Validate that the vertices exist
+		 //Catch the error if try to draw an edge but not vertices
+		 //The way I can catch for vertices not made is out of bound error - come back to this
+		 if(v1.length() == 1 && v2.length() == 1) {
+			 int index1 = (int)v1.charAt(0) - 'A';
+			 int index2 = (int)v2.charAt(0) - 'A';
+			 System.out.printf("Point x: %f, y: %f, name: %s", vertexList.get(index1).getX(), vertexList.get(index1).getY(), vertexList.get(index1).getName());
+			 System.out.printf("Point x: %f, y: %f, name: %s", vertexList.get(index2).getX(), vertexList.get(index2).getY(), vertexList.get(index2).getName());
+		 }
 	 }
 
 }
