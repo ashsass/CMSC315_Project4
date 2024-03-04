@@ -32,11 +32,12 @@ THOUGHTS
 
 public class GraphView extends BorderPane {
 	//the index indicates the name of the point - this could be useful
-	ArrayList<Point> vertexList = new ArrayList<>();
+//	ArrayList<Point> vertexList = new ArrayList<>();
+
+	UndirectedGraph graph = new UndirectedGraph();
 	
 	/* no-arg constructor */
 	public GraphView() {
-		UndirectedGraph graph = new UndirectedGraph();
 		/* mouse click event listener for x, y points */
 		setOnMouseClicked(event ->  {
 				//The center portion's height is 437
@@ -50,7 +51,7 @@ public class GraphView extends BorderPane {
 						//create a new point and turn it into a circle
 						//this seems like i'm going about this in an inefficient way???
 						Point newPoint = graph.addVertex(x, y);
-						vertexList.add(newPoint);
+//						vertexList.add(newPoint);
 						getChildren().addAll(new Circle(x, y, 5.0),
 								new Text(x - 5, y - 10, newPoint.getName()));
 					}
@@ -69,10 +70,12 @@ public class GraphView extends BorderPane {
 		 if(v1.length() == 1 && v2.length() == 1) {
 			 int index1 = (int)v1.charAt(0) - 'A';
 			 int index2 = (int)v2.charAt(0) - 'A';
-			 Point p1 = vertexList.get(index1);
-			 Point p2 = vertexList.get(index2);
+			 Point p1 = graph.getPoint(index1);
+			 Point p2 = graph.getPoint(index2);
 			 getChildren().add(new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY()));
 		 }
+		 
+		 //
 	 }
 
 }

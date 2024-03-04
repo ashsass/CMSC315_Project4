@@ -52,6 +52,10 @@ public class UndirectedGraph {
 			return String.valueOf(name) + suffix;
 	}
 	
+	public Point getPoint(int index) {
+		return vertexList.get(index);
+	}
+	
 //	public void addEdge(int p1, int p2) {
 //		if(vertexList.get(p1) && vertexList.get(p2)) {
 //			
