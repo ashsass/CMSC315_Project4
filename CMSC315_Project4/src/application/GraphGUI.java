@@ -25,6 +25,7 @@ public class GraphGUI extends Application {
 	//needed to put this here to access graphview in the event listeners - should event listeners be in a better place? i feel like they shouldn't share the function. but i need to access the variables and I don't want to put them more variables as global variables - does it matter? it feels like it does
 
 	GraphView graphView = new GraphView();
+	TextField tfMessage = new TextField();
 	
 	
 	@Override
@@ -72,7 +73,7 @@ public class GraphGUI extends Application {
 		hBox.getChildren().addAll(btnEdge, new Label("Vertex 1"), tfVertexOne, 
 				new Label("Vertex 2"), tfVertexTwo);
 		
-
+		//How to put an error message on the textfield?
 		btnEdge.setOnAction(event -> graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText()));
 	
 		return hBox;
@@ -93,7 +94,6 @@ public class GraphGUI extends Application {
 		Button btnBfs = new Button("Breadth First Search");
 		
 		/* create large text field to display message */
-		TextField tfMessage = new TextField();
 		tfMessage.setEditable(false);
 		
 		/* add buttons to hbox */

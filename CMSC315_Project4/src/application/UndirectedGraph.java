@@ -6,6 +6,8 @@
 
 package application;
 
+import java.util.ArrayList;
+
 /*
  - [ ] The second class should be a class that defines the graph. You may use any graph representation that allows an unlimited number of vertices and edges. It should have the following public methods 
 	- [x] A method to add a vertex 
@@ -20,6 +22,9 @@ package application;
 
 public class UndirectedGraph {
 	private int index = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
+
+	//the index indicates the name of the point - this could be useful
+	private ArrayList<Point> vertexList = new ArrayList<>();
 	
 	/* no-constructor */
 	public UndirectedGraph() {
@@ -28,9 +33,9 @@ public class UndirectedGraph {
 	
 	public Point addVertex(double x, double y) {
 		String name = createName();
-		
-		//create a new point
-		return new Point(x, y, name);	
+		Point point = new Point(x, y, name);
+		vertexList.add(point);
+		return point;	
 		//Not really doing anything with this at this point just using it to create a circle in graph view will probably need to store it in a list to create the actual graph
 	}
 	
@@ -46,4 +51,10 @@ public class UndirectedGraph {
 		else
 			return String.valueOf(name) + suffix;
 	}
+	
+//	public void addEdge(int p1, int p2) {
+//		if(vertexList.get(p1) && vertexList.get(p2)) {
+//			
+//		}
+//	}
 }

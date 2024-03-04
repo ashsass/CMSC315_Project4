@@ -58,16 +58,20 @@ public class GraphView extends BorderPane {
 		});
 	}
 	
-	 public void drawEdge(String v1, String v2) {
+	//A little confused as to how drawEdge and addEdge should work together
+	//Maybe when passing the indices to drawEdge so long as the vertices exist we add on to an adjacency list? And that will keep track of edges? 
+	//for now just focus on creating a line and then we'll get to errors and validating 
+	 public void drawEdge(String v1, String v2){
 		 //If in lower case change to upper case 
+		 
 		 //Validate that the vertices exist
-		 //Catch the error if try to draw an edge but not vertices
-		 //The way I can catch for vertices not made is out of bound error - come back to this
+		 
 		 if(v1.length() == 1 && v2.length() == 1) {
 			 int index1 = (int)v1.charAt(0) - 'A';
 			 int index2 = (int)v2.charAt(0) - 'A';
-			 System.out.printf("Point x: %f, y: %f, name: %s", vertexList.get(index1).getX(), vertexList.get(index1).getY(), vertexList.get(index1).getName());
-			 System.out.printf("Point x: %f, y: %f, name: %s", vertexList.get(index2).getX(), vertexList.get(index2).getY(), vertexList.get(index2).getName());
+			 Point p1 = vertexList.get(index1);
+			 Point p2 = vertexList.get(index2);
+			 getChildren().add(new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY()));
 		 }
 	 }
 
