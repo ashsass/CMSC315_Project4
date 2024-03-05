@@ -5,24 +5,11 @@
  */
 
 package application;
+
 import javafx.scene.layout.*;
-
-import java.util.ArrayList;
-
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
-
-/*
-  The third class is should be an extension of the javafx Pane class that visually displays the graph. It should contain 
-	- [x] an event handler that responds to mouse clicks that creates new vertices
-		- where is the best place for it in the code? in the constructor?
-	- [ ] a method that is called to draw edges. 
- */
-
-
 
 
 public class GraphView extends BorderPane {
@@ -32,6 +19,7 @@ public class GraphView extends BorderPane {
 	/* no-arg constructor */
 	public GraphView(UndirectedGraph graph) {
 		this.graph = graph;
+		
 		/* mouse click event listener for x, y points */
 		setOnMouseClicked(event ->  {
 				//The center portion's height is 437
@@ -43,9 +31,7 @@ public class GraphView extends BorderPane {
 					//keeping x and y within center border
 					if(y > 50 && y < 498) {
 						//create a new point and turn it into a circle
-						//this seems like i'm going about this in an inefficient way???
 						Point newPoint = graph.addVertex(x, y);
-//						vertexList.add(newPoint);
 						getChildren().addAll(new Circle(x, y, 5.0),
 								new Text(x - 5, y - 10, newPoint.getName()));
 					}

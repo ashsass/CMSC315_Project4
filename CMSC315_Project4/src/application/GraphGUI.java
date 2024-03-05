@@ -5,13 +5,6 @@
  */
 
 package application;
-
-/*
-- [ ] The fourth class should contain 
-	- [x] the main method
-	- [x] should create the GUI including all the buttons and text fields. 
-	- [ ] It should include event handlers for each of the buttons. 
- */
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -37,8 +30,6 @@ public class GraphGUI extends Application {
 			graphView = new GraphView(graph);
 			graphView.setTop(getTopBorder());
 			graphView.setBottom(getBottomBorder());
-			
-			//event listeners for the buttons
 			
 			
 			Scene scene = new Scene(graphView, 550, 600);
@@ -85,9 +76,7 @@ public class GraphGUI extends Application {
 		return hBox;
 	}
 	
-	//Should I do two hboxes for the bottom layer? there is just one text field under four buttons that takes up the full width or can I manage it with one hbox
 	public VBox getBottomBorder() {
-		//instead create a vbox that holds buttons on one level and the text field on the next level and set that to bottom border
 		/* create hbox to hold buttons*/
 		HBox hBox = new HBox(15);
 		hBox.setAlignment(Pos.CENTER);
@@ -99,12 +88,6 @@ public class GraphGUI extends Application {
 		Button btnDfs = new Button("Depth First Search");
 		Button btnBfs = new Button("Breadth First Search");
 		
-		//Event handler
-		btnDfs.setOnAction(e -> {
-			String dfs = graph.dfs().toString();
-			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
-		});
-		
 		/* create large text field to display message */
 		tfMessage.setEditable(false);
 		
@@ -114,6 +97,12 @@ public class GraphGUI extends Application {
 		/* add hbox and tfmessage to vbox */
 		VBox vBox = new VBox(hBox, tfMessage); 
 		vBox.setPadding(new Insets(15, 30, 30, 30));
+		
+		//Event handler
+		btnDfs.setOnAction(e -> {
+			String dfs = graph.dfs().toString();
+			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
+		});
 		
 		return vBox;
 	}
