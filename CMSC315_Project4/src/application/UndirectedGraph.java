@@ -18,6 +18,7 @@ public class UndirectedGraph {
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
 //		vertexListIndex++;
 //		vertexList.add(new ArrayList<>());
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
@@ -27,6 +28,7 @@ public class UndirectedGraph {
 //		vertexList.add(new ArrayList<>());
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
 //		vertexListIndex++;
 //		vertexList.add(new ArrayList<>());
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
@@ -40,7 +42,7 @@ public class UndirectedGraph {
 //		vertexList.add(new ArrayList<>());
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
 //		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-//		System.out.println(bfs().toString());
+//		hasCycles();
 //	}
 
 	/* the index indicates the name of the point */
@@ -148,6 +150,28 @@ public class UndirectedGraph {
 	  }
 	  
 	  public boolean hasCycles() {
-		  return false;
+		  int start = 0; //Start at A
+		  List<String> searchOrder = new ArrayList<>();
+		  //Keep track of visited indices
+		  boolean[] isVisited = new boolean[vertexList.size()];
+		  
+		  return hasCycles(start, searchOrder, isVisited);
+	  }
+	  
+	  private boolean hasCycles(int i, List<String> searchOrder, boolean[] isVisited) {
+		  searchOrder.add(vertexList.get(i).get(0).getName());
+		  isVisited[i] = true; 
+		  boolean cycle = false;
+		  
+		  for (Point e : vertexList.get(i)) { 
+			  int next = (int)e.getName().charAt(0) - 'A';
+			  if (isVisited[next] && next != 0)
+				  cycle = true;
+			  if (!isVisited[next]) {  
+				  hasCycles(next, searchOrder, isVisited); 
+		      }
+		  }
+		  
+		  return cycle;
 	  }
 }
