@@ -32,11 +32,17 @@ public class GraphView extends BorderPane {
 					if(y > 50 && y < 498) {
 						//create a new point and turn it into a circle
 						Point newPoint = graph.addVertex(x, y);
-						getChildren().addAll(new Circle(x, y, 5.0),
-								new Text(x - 5, y - 10, newPoint.getName()));
+						drawVertex(newPoint);
+//						getChildren().addAll(new Circle(x, y, 5.0),
+//								new Text(x - 5, y - 10, newPoint.getName()));
 					}
 				}
 		});
+	}
+	
+	public void drawVertex(Point point) {
+		getChildren().addAll(new Circle(point.getX(), point.getY(), 5.0), 
+				new Text(point.getX() - 5, point.getY() - 10, point.getName()));
 	}
 	 
 	 public void drawEdge(String v1, String v2) throws IndexOutOfBoundsException{
