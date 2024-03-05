@@ -145,25 +145,15 @@ public class UndirectedGraph {
 	
 	public boolean isVertex(String name) {
 		char charName = name.charAt(0);
-		System.out.printf("charName: %c\n", charName);
 		
-		//check if non char entered
-		if(!Character.isLetter(charName))
-			return false;
-					
-		//check if name was entered in lower case
-		if(Character.isLowerCase(charName)) 
-			charName = Character.toUpperCase(charName);
-		
-		//check that the associate index has been added to vertexList
-		//if not return false
-		//if all check return true
 		int index = (int)charName - 'A';
 		if(index > vertexList.size() - 1)
 			return false;
 	
 		return true;
 	}
+	
+
 //	
 //	public int nameIndex(String name) {
 //		return (int)charAt(0) - 'A'
