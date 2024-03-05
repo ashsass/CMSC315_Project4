@@ -24,7 +24,8 @@ import javafx.geometry.*;
 public class GraphGUI extends Application {
 	//needed to put this here to access graphview in the event listeners - should event listeners be in a better place? i feel like they shouldn't share the function. but i need to access the variables and I don't want to put them more variables as global variables - does it matter? it feels like it does
 
-	GraphView graphView = new GraphView();
+	GraphView graphView;
+	UndirectedGraph graph;
 	TextField tfMessage = new TextField();
 	
 	
@@ -32,6 +33,8 @@ public class GraphGUI extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			//add the top and bottom border to the pane
+			graph = new UndirectedGraph();
+			graphView = new GraphView(graph);
 			graphView.setTop(getTopBorder());
 			graphView.setBottom(getBottomBorder());
 			
@@ -95,6 +98,12 @@ public class GraphGUI extends Application {
 		Button btnCycles = new Button("Has Cycles?");
 		Button btnDfs = new Button("Depth First Search");
 		Button btnBfs = new Button("Breadth First Search");
+		
+		//Event handler
+		btnDfs.setOnAction(e -> {
+			String dfs = graph.dfs().toString();
+			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
+		});
 		
 		/* create large text field to display message */
 		tfMessage.setEditable(false);

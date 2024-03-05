@@ -26,10 +26,12 @@ import javafx.scene.text.*;
 
 
 public class GraphView extends BorderPane {
-	UndirectedGraph graph = new UndirectedGraph();
+//	UndirectedGraph graph = new UndirectedGraph();
+	UndirectedGraph graph;
 	
 	/* no-arg constructor */
-	public GraphView() {
+	public GraphView(UndirectedGraph graph) {
+		this.graph = graph;
 		/* mouse click event listener for x, y points */
 		setOnMouseClicked(event ->  {
 				//The center portion's height is 437
