@@ -83,14 +83,15 @@ public class UndirectedGraph {
 		
 	}
 	
+	
 	public List<String> dfs() {
 		int start = 0; //Start at A
 	    List<String> searchOrder = new ArrayList<>();
+	    //Initialize all parents to -1
 	    int[] parent = new int[vertexList.size()];
 	    for (int i = 0; i < parent.length; i++)
 	    		parent[i] = -1; 
-
-	    // Mark visited vertices
+	    //Keep track of visited indices
 	    boolean[] isVisited = new boolean[vertexList.size()];
 
 	    // Recursively search
@@ -99,7 +100,6 @@ public class UndirectedGraph {
 	    return searchOrder;
 	  }
 
-	  /** Recursive method for DFS search */
 	  private void dfs(int i, int[] parent, List<String> searchOrder,
 	      boolean[] isVisited) {
 		  searchOrder.add(vertexList.get(i).get(0).getName());
@@ -111,6 +111,29 @@ public class UndirectedGraph {
 				  parent[next] = i; 
 				  dfs(next, parent, searchOrder, isVisited); 
 		      }
-	    }
+		  }
+	  }
+	  
+	  public List<String> bfs() {
+		  //Start at A
+		  int start = 0; 
+		  
+		  //Create lists
+		  List<String> searchOrder = new ArrayList<>();
+		  LinkedList<Integer> queue = new LinkedList<>();
+		  
+		  //Initialize all parents to -1
+		  int[] parent = new int[vertexList.size()];
+		  for(int i = 0; i < vertexList.size(); i++) {
+			  parent[i] = -1;
+		  } 
+		  
+		  //Keep track of visited indices
+		  boolean[] isVisited = new boolean[vertexList.size()];
+		  
+		  //Begin search
+		  queue.offer(start);
+		  
+		  return searchOrder;
 	  }
 }
