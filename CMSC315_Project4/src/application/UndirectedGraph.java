@@ -2,7 +2,7 @@
  * CMSC315 Project 4
  * Due Date: 3/5/24
  * Decription:
- */
+ */ 
 
 package application;
 
@@ -78,7 +78,7 @@ public class UndirectedGraph {
 		  }
 	  }
 	  
-	  public List<String> bfs() {
+	public List<String> bfs() {
 		  int start = 0; //Start at A
 		  
 		  //Create lists
@@ -107,26 +107,26 @@ public class UndirectedGraph {
 		  return searchOrder;
 	  }
 	  
-	  /* every vertice must be connected so the size of a bfs list should be the same as the vertex list */
-	  public boolean isConnected() {
+	/* every vertice must be connected so the size of a bfs list should be the same as the vertex list */
+	public boolean isConnected() {
 		  List<String> bfs = bfs();
 		  if(bfs.size() == vertexList.size())
 			  return true;
 		  else
 			  return false;
-	  }
+	}
 	  
-	  /* Modify dfs so that if a node has been visited but it is not A then it has a cycle */
-	  public boolean hasCycles() {
+	/* Modify dfs so that if a node has been visited but it is not A then it has a cycle */
+	public boolean hasCycles() {
 		  int start = 0; //Start at A
 		  List<String> searchOrder = new ArrayList<>();
 		  //Keep track of visited indices
 		  boolean[] isVisited = new boolean[vertexList.size()];
 		  
 		  return hasCycles(start, searchOrder, isVisited);
-	  }
-	  
-	  private boolean hasCycles(int i, List<String> searchOrder, boolean[] isVisited) {
+	}
+	
+	private boolean hasCycles(int i, List<String> searchOrder, boolean[] isVisited) {
 		  searchOrder.add(vertexList.get(i).get(0).getName());
 		  isVisited[i] = true; 
 		  boolean cycle = false;
@@ -142,4 +142,21 @@ public class UndirectedGraph {
 		  
 		  return cycle;
 	  }
+	
+	public boolean isVertex(String name) {
+		char charName = name.charAt(0);
+		
+		int index = (int)charName - 'A';
+		if(index > vertexList.size() - 1)
+			return false;
+	
+		return true;
+	}
+	
+
+//	
+//	public int nameIndex(String name) {
+//		return (int)charAt(0) - 'A'
+//	}
+	
 }

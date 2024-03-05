@@ -70,8 +70,27 @@ public class GraphGUI extends Application {
 		hBox.getChildren().addAll(btnEdge, new Label("Vertex 1"), tfVertexOne, 
 				new Label("Vertex 2"), tfVertexTwo);
 		
-		//How to put an error message on the textfield?
-		btnEdge.setOnAction(event ->	graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText()));
+		btnEdge.setOnAction(event ->	{
+			tfMessage.clear();
+			//Verify the vertex input is a letter
+			if(isLetter(tfVertexOne.getText()) && isLetter(tfVertexTwo.getText())) {
+				//Verify that the vertex input is uppercase, if not set to uppercase
+				String vertex1 = isUpperCase(tfVertexOne.getText()) ? tfVertexOne.getText() : 
+					setUpperCase(tfVertexOne.getText());
+				String vertex2 = isUpperCase(tfVertexTwo.getText()) ? tfVertexTwo.getText() : 
+					setUpperCase(tfVertexTwo.getText());
+				
+				//Check the vertex exists in vertex list
+				if(graph.isVertex(vertex1) && graph.isVertex(vertex2)) {
+					graphView.drawEdge(vertex1, vertex2);
+				}
+				else 
+					tfMessage.setText("Vertex not found.");
+			}
+			else
+				tfMessage.setText("Please enter a valid letter.");
+			
+		});
 	
 		return hBox;
 	}
@@ -107,9 +126,23 @@ public class GraphGUI extends Application {
 			String bfs = graph.bfs().toString();
 			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
 		});
-		btnConnected.setOnAction(e -> tfMessage.setText(graph.isConnected() ? "The graph is connected" : "The graph is not connected"));
-		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : "The graph doesn't have cycles."));
+		btnConnected.setOnAction(e -> tfMessage.setText(graph.isConnected() ? "The graph is connected" :
+			"The graph is not connected"));
+		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : 
+			"The graph doesn't have cycles."));
 		
 		return vBox;
+	}
+	
+	public boolean isUpperCase(String name) {
+		return !Character.isLowerCase(name.charAt(0));
+	}
+	
+	public String setUpperCase(String name) {
+		return String.valueOf(Character.toUpperCase(name.charAt(0)));
+	}
+	
+	public boolean isLetter(String name) {
+		return Character.isLetter(name.charAt(0));
 	}
 }
