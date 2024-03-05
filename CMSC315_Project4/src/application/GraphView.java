@@ -13,7 +13,6 @@ import javafx.scene.text.*;
 
 
 public class GraphView extends BorderPane {
-//	UndirectedGraph graph = new UndirectedGraph();
 	UndirectedGraph graph;
 	
 	/* no-arg constructor */

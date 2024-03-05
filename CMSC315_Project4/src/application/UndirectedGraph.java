@@ -71,7 +71,7 @@ public class UndirectedGraph {
 		  isVisited[i] = true; 
 		  
 		  for (Point e : vertexList.get(i)) { 
-			  int next = (int)e.getName().charAt(0) - 'A';
+			  int next = calculateNameIndex(e.getName());
 			  if (!isVisited[next]) { 
 				  dfs(next, searchOrder, isVisited); 
 		      }
@@ -96,7 +96,7 @@ public class UndirectedGraph {
 			  int i = queue.poll();
 			  searchOrder.add(vertexList.get(i).get(0).getName());
 			  for (Point e: vertexList.get(i)){
-				  int next = (int)e.getName().charAt(0) - 'A';
+				  int next = calculateNameIndex(e.getName());
 				  if(!isVisited[next]) {
 					  queue.offer(next);
 					  isVisited[next] = true;
@@ -132,7 +132,7 @@ public class UndirectedGraph {
 		  boolean cycle = false;
 		  
 		  for (Point e : vertexList.get(i)) { 
-			  int next = (int)e.getName().charAt(0) - 'A';
+			  int next = calculateNameIndex(e.getName());
 			  if (isVisited[next] && next != 0)
 				  cycle = true;
 			  if (!isVisited[next]) {  
@@ -153,10 +153,8 @@ public class UndirectedGraph {
 		return true;
 	}
 	
-
-//	
-//	public int nameIndex(String name) {
-//		return (int)charAt(0) - 'A'
-//	}
+	public int calculateNameIndex(String name) {
+		return (int)name.charAt(0) - 'A';
+	}
 	
 }
