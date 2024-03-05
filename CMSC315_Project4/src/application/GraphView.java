@@ -6,6 +6,9 @@
 
 package application;
 import javafx.scene.layout.*;
+
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
@@ -19,25 +22,16 @@ import javafx.scene.text.*;
 	- [ ] a method that is called to draw edges. 
  */
 
-/*
-THOUGHTS 
-- potienal problem with trying to get the text field information will probably need to change where the variable gets created? definitely something that will come up later 
-- Maybe using grid pane would be better than border pane?? would it matter when it comes to placing actual vertices? 
-- Don't want the screen to be resizable
- */
 
-//IDEA: set our pane to the center borderpane and then use that width and height to test if the mouse is clicking in a useable area 
 
-public class GraphView extends BorderPane{
+
+public class GraphView extends BorderPane {
+	UndirectedGraph graph = new UndirectedGraph();
 	
 	/* no-arg constructor */
 	public GraphView() {
-		UndirectedGraph graph = new UndirectedGraph();
-		
-		/* get coordinates for point */
-		setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override 
-			public void handle(MouseEvent event) {
+		/* mouse click event listener for x, y points */
+		setOnMouseClicked(event ->  {
 				//The center portion's height is 437
 				//top border height is 0 - 50 
 				//bottom border height is 498 - 600
@@ -49,14 +43,30 @@ public class GraphView extends BorderPane{
 						//create a new point and turn it into a circle
 						//this seems like i'm going about this in an inefficient way???
 						Point newPoint = graph.addVertex(x, y);
+//						vertexList.add(newPoint);
 						getChildren().addAll(new Circle(x, y, 5.0),
 								new Text(x - 5, y - 10, newPoint.getName()));
 					}
 				}
-			}
 		});
 	}
-	
 	 
+	 public void drawEdge(String v1, String v2) throws IndexOutOfBoundsException{
+		 //If in lower case change to upper case 
+		 
+		 //Validate that the vertices exist
+		 	//IndexOutOfBoundsException("One of the vertices not found");
+		 
+		 
+		 if(v1.length() == 1 && v2.length() == 1) {
+			 int index1 = (int)v1.charAt(0) - 'A';
+			 int index2 = (int)v2.charAt(0) - 'A';
+		//Will need to validate points before getting here - come back to it
+			 Point p1 = graph.getPoint(index1);
+			 Point p2 = graph.getPoint(index2);
+			 graph.addEdge(index1, p1, index2, p2);
+			 getChildren().add(new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY()));
+		 }
+	 }
 
 }

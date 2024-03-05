@@ -22,21 +22,29 @@ import javafx.geometry.*;
 
 
 public class GraphGUI extends Application {
+	//needed to put this here to access graphview in the event listeners - should event listeners be in a better place? i feel like they shouldn't share the function. but i need to access the variables and I don't want to put them more variables as global variables - does it matter? it feels like it does
+
+	GraphView graphView = new GraphView();
+	TextField tfMessage = new TextField();
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			GraphView graphView = new GraphView();
-			//Pane centerTest = new Pane();
-			
 			//add the top and bottom border to the pane
 			graphView.setTop(getTopBorder());
 			graphView.setBottom(getBottomBorder());
-			//graphView.setCenter(centerTest);
+			
+			//event listeners for the buttons
+			
 			
 			Scene scene = new Scene(graphView, 550, 600);
 			primaryStage.setTitle("Project 4: Graph GUI");
 			primaryStage.setScene(scene);
 			primaryStage.show();
+		}
+		catch(IndexOutOfBoundsException ex) {
+			System.out.print(ex);
 		}
 		catch(Exception ex) {
 			System.out.print(ex);
@@ -54,22 +62,22 @@ public class GraphGUI extends Application {
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(new Insets(15, 15, 15, 15));
 		
-		/* add in buttons and text fields */
-		hBox.getChildren().add(new Button("Add Edge"));
+		Button btnEdge = new Button("Add Edge");
 		
 		//Vertex 1
-		//hBox.getChildren().add(new Label("Vertex 1"));
-		TextField tfVertexOne = new TextField(); //need to create a variable so we can target it later
+		TextField tfVertexOne = new TextField(); 
 		tfVertexOne.setPrefWidth(30);
 		
-		//Vertex 2
-		//hBox.getChildren().add(new Label("Vertex 2"));
-		TextField tfVertexTwo = new TextField(); //need to create a variable so we can target it later
+		//Vertex 2 
+		TextField tfVertexTwo = new TextField();
 		tfVertexTwo.setPrefWidth(30);
 		
 		//Add fields to HBox
-		hBox.getChildren().addAll(new Label("Vertex 1"), tfVertexOne, 
+		hBox.getChildren().addAll(btnEdge, new Label("Vertex 1"), tfVertexOne, 
 				new Label("Vertex 2"), tfVertexTwo);
+		
+		//How to put an error message on the textfield?
+		btnEdge.setOnAction(event ->	graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText()));
 	
 		return hBox;
 	}
@@ -89,7 +97,6 @@ public class GraphGUI extends Application {
 		Button btnBfs = new Button("Breadth First Search");
 		
 		/* create large text field to display message */
-		TextField tfMessage = new TextField();
 		tfMessage.setEditable(false);
 		
 		/* add buttons to hbox */
