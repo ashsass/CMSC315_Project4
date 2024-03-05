@@ -15,9 +15,16 @@ import javafx.geometry.*;
 
 
 public class GraphGUI extends Application {
-	GraphView graphView;
-	UndirectedGraph graph;
-	TextField tfMessage = new TextField();
+	private GraphView graphView;
+	private UndirectedGraph graph;
+	private TextField tfMessage = new TextField();
+	private Button btnEdge;
+	private Button btnConnected;
+	private Button btnCycles;
+	private Button btnDfs;
+	private Button btnBfs;
+	private TextField tfVertexOne; 
+	private TextField tfVertexTwo;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -28,6 +35,7 @@ public class GraphGUI extends Application {
 			graphView.setTop(getTopBorder());
 			graphView.setBottom(getBottomBorder());
 			
+			setEventHandlers();
 			
 			Scene scene = new Scene(graphView, 550, 600);
 			primaryStage.setTitle("Project 4: Graph GUI");
@@ -46,27 +54,8 @@ public class GraphGUI extends Application {
 		launch(args);
 	}
 	
-	
-	public HBox getTopBorder() {
-		/* creating hbox */
-		HBox hBox = new HBox(15);
-		hBox.setAlignment(Pos.CENTER);
-		hBox.setPadding(new Insets(15, 15, 15, 15));
-		
-		Button btnEdge = new Button("Add Edge");
-		
-		//Vertex 1
-		TextField tfVertexOne = new TextField(); 
-		tfVertexOne.setPrefWidth(30);
-		
-		//Vertex 2 
-		TextField tfVertexTwo = new TextField();
-		tfVertexTwo.setPrefWidth(30);
-		
-		//Add fields to HBox
-		hBox.getChildren().addAll(btnEdge, new Label("Vertex 1"), tfVertexOne, 
-				new Label("Vertex 2"), tfVertexTwo);
-		
+	public void setEventHandlers() {
+		//Add edge handler
 		btnEdge.setOnAction(event ->	{
 			tfMessage.clear();
 			//Verify the vertex input is a letter
@@ -86,35 +75,8 @@ public class GraphGUI extends Application {
 			}
 			else
 				tfMessage.setText("Please enter a valid letter.");
-			
 		});
-	
-		return hBox;
-	}
-	
-	public VBox getBottomBorder() {
-		/* create hbox to hold buttons*/
-		HBox hBox = new HBox(15);
-		hBox.setAlignment(Pos.CENTER);
-		hBox.setPadding(new Insets(0, 0, 10, 0));
 		
-		/* create buttons */
-		Button btnConnected = new Button("Is Connected?");
-		Button btnCycles = new Button("Has Cycles?");
-		Button btnDfs = new Button("Depth First Search");
-		Button btnBfs = new Button("Breadth First Search");
-		
-		/* create large text field to display message */
-		tfMessage.setEditable(false);
-		
-		/* add buttons to hbox */
-		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs);
-		
-		/* add hbox and tfmessage to vbox */
-		VBox vBox = new VBox(hBox, tfMessage); 
-		vBox.setPadding(new Insets(15, 30, 30, 30));
-		
-		//Event handler
 		btnDfs.setOnAction(e -> {
 			String dfs = graph.dfs().toString();
 			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
@@ -127,6 +89,49 @@ public class GraphGUI extends Application {
 			"The graph is not connected"));
 		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : 
 			"The graph doesn't have cycles."));
+	}
+	
+	
+	public HBox getTopBorder() {
+		/* creating hbox */
+		HBox hBox = new HBox(15);
+		hBox.setAlignment(Pos.CENTER);
+		hBox.setPadding(new Insets(15, 15, 15, 15));
+		
+		btnEdge = new Button("Add Edge");
+		tfVertexOne = new TextField(); 
+		tfVertexTwo = new TextField();
+		tfVertexOne.setPrefWidth(30);
+		tfVertexTwo.setPrefWidth(30);
+		
+		//Add fields to HBox
+		hBox.getChildren().addAll(btnEdge, new Label("Vertex 1"), tfVertexOne, 
+				new Label("Vertex 2"), tfVertexTwo);
+		
+		return hBox;
+	}
+	
+	public VBox getBottomBorder() {
+		/* create hbox to hold buttons*/
+		HBox hBox = new HBox(15);
+		hBox.setAlignment(Pos.CENTER);
+		hBox.setPadding(new Insets(0, 0, 10, 0));
+		
+		/* create buttons */
+		btnConnected = new Button("Is Connected?");
+		btnCycles = new Button("Has Cycles?");
+		btnDfs = new Button("Depth First Search");
+		btnBfs = new Button("Breadth First Search");
+		
+		/* create large text field to display message */
+		tfMessage.setEditable(false);
+		
+		/* add buttons to hbox */
+		hBox.getChildren().addAll(btnConnected, btnCycles, btnDfs, btnBfs);
+		
+		/* add hbox and tfmessage to vbox */
+		VBox vBox = new VBox(hBox, tfMessage); 
+		vBox.setPadding(new Insets(15, 30, 30, 30));
 		
 		return vBox;
 	} 
