@@ -10,41 +10,41 @@ import java.util.*;
 
 public class UndirectedGraph {
 	private int nameIndex = 0; //first name should be A
-	private static int vertexListIndex = 0; //need to be able to put the point in the correct place in the vertex list 
+	private int vertexListIndex = 0; //need to be able to put the point in the correct place in the vertex list 
 	
-	public static void main(String[] args) {
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		System.out.println(bfs().toString());
-	}
+//	public static void main(String[] args) {
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		System.out.println(bfs().toString());
+//	}
 
 	/* the index indicates the name of the point */
-	private static List<ArrayList<Point>> vertexList = new ArrayList<>();
+	private List<ArrayList<Point>> vertexList = new ArrayList<>();
 	
 	/* no-constructor */
 	public UndirectedGraph() {
@@ -83,26 +83,18 @@ public class UndirectedGraph {
 		
 	}
 	
-	
 	public List<String> dfs() {
 		int start = 0; //Start at A
 	    List<String> searchOrder = new ArrayList<>();
-	    //Initialize all parents to -1
-//	    int[] parent = new int[vertexList.size()];
-//	    for (int i = 0; i < parent.length; i++)
-//	    		parent[i] = -1; 
 	    //Keep track of visited indices
 	    boolean[] isVisited = new boolean[vertexList.size()];
 
 	    // Recursively search
-//	    dfs(start, parent, searchOrder, isVisited);
 	    dfs(start, searchOrder, isVisited);
 
 	    return searchOrder;
 	  }
 
-//	  private void dfs(int i, int[] parent, List<String> searchOrder,
-//	      boolean[] isVisited) {
 	private void dfs(int i, List<String> searchOrder,
 		      boolean[] isVisited) {
 		  searchOrder.add(vertexList.get(i).get(0).getName());
@@ -111,27 +103,18 @@ public class UndirectedGraph {
 		  for (Point e : vertexList.get(i)) { 
 			  int next = (int)e.getName().charAt(0) - 'A';
 			  if (!isVisited[next]) { 
-//				  parent[next] = i; 
-//				  dfs(next, parent, searchOrder, isVisited); 
 				  dfs(next, searchOrder, isVisited); 
 		      }
 		  }
 	  }
 	  
-	  public static List<String> bfs() {
+	  public List<String> bfs() {
 		  //Start at A
 		  int start = 0; 
 		  
 		  //Create lists
 		  List<String> searchOrder = new ArrayList<>();
 		  LinkedList<Integer> queue = new LinkedList<>();
-		  
-		  //Initialize all parents to -1
-		  //Don't think I need parent in this situation actually 
-//		  int[] parent = new int[vertexList.size()];
-//		  for(int i = 0; i < vertexList.size(); i++) {
-//			  parent[i] = -1;
-//		  } 
 		  
 		  //Keep track of visited indices
 		  boolean[] isVisited = new boolean[vertexList.size()];

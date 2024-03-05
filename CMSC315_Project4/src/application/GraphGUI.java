@@ -103,6 +103,10 @@ public class GraphGUI extends Application {
 			String dfs = graph.dfs().toString();
 			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
 		});
+		btnBfs.setOnAction(e -> {
+			String bfs = graph.bfs().toString();
+			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
+		});
 		
 		return vBox;
 	}
