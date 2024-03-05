@@ -18,7 +18,7 @@ import java.util.*;
 	- [ ] A method that returns a list of vertices resulting from a breadth-first graph search 
 	- [ ] You may add any other methods as needed. 
  */
-
+ 
 
 public class UndirectedGraph {
 	private int nameIndex = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
