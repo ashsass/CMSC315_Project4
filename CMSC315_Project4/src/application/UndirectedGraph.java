@@ -22,41 +22,41 @@ import java.util.*;
 
 public class UndirectedGraph {
 	private int nameIndex = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
-	private static int vertexListIndex = 0; //need to be able to put the point in the correct place in the vertex list - this is getting complicated now that it is a list holding an arraylist 
+	private int vertexListIndex = 0; //need to be able to put the point in the correct place in the vertex list - this is getting complicated now that it is a list holding an arraylist 
 	
-	public static void main(String[] args) {
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		vertexListIndex++;
-		vertexList.add(new ArrayList<>());
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
-		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-		dfs();
-	}
+//	public static void main(String[] args) {
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		vertexListIndex++;
+//		vertexList.add(new ArrayList<>());
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
+//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
+//		dfs();
+//	}
 
 	/* the index indicates the name of the point */
-	private static List<ArrayList<Point>> vertexList = new ArrayList<>();
+	private List<ArrayList<Point>> vertexList = new ArrayList<>();
 	
 	/* no-constructor */
 	public UndirectedGraph() {
@@ -99,7 +99,7 @@ public class UndirectedGraph {
 		
 	}
 	
-	public static List<String> dfs() {
+	public List<String> dfs() {
 		int start = 0; //Start at A
 	    List<String> searchOrder = new ArrayList<>();
 	    int[] parent = new int[vertexList.size()];
@@ -116,7 +116,7 @@ public class UndirectedGraph {
 	  }
 
 	  /** Recursive method for DFS search */
-	  private static void dfs(int i, int[] parent, List<String> searchOrder,
+	  private void dfs(int i, int[] parent, List<String> searchOrder,
 	      boolean[] isVisited) {
 		  searchOrder.add(vertexList.get(i).get(0).getName());
 		  isVisited[i] = true; 

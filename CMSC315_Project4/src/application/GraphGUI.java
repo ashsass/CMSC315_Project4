@@ -100,7 +100,10 @@ public class GraphGUI extends Application {
 		Button btnBfs = new Button("Breadth First Search");
 		
 		//Event handler
-		//btnDfs.setOnAction(e -> graph.dfs());
+		btnDfs.setOnAction(e -> {
+			String dfs = graph.dfs().toString();
+			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
+		});
 		
 		/* create large text field to display message */
 		tfMessage.setEditable(false);
