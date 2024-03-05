@@ -5,12 +5,6 @@
  */
 
 package application;
-/*
-- [x] The first class should be an immutable class that defines a vertex of the graph
-- [x] contains the _x_ and _y_ coordinates of the vertex
-- [x] contains the name of the vertex.
-- [x] It should have a constructor and three getter methods. 
-*/
 
 public class Point {
 	private double x;

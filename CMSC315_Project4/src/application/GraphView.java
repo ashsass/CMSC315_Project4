@@ -13,27 +13,30 @@ import javafx.scene.text.*;
 
 
 public class GraphView extends BorderPane {
-	UndirectedGraph graph;
+	private UndirectedGraph graph;
 	
 	/* no-arg constructor */
 	public GraphView(UndirectedGraph graph) {
 		this.graph = graph;
-		
+		setEventHandler();
+	}
+	
+	public void setEventHandler() {
 		/* mouse click event listener for x, y points */
 		setOnMouseClicked(event ->  {
-				//The center portion's height is 437
-				//top border height is 0 - 50 
-				//bottom border height is 498 - 600
-				if(event.getButton() == MouseButton.PRIMARY) {
-					double x = event.getSceneX();
-					double y = event.getSceneY();
-					//keeping x and y within center border
-					if(y > 50 && y < 498) {
-						//create a new point and turn it into a circle
-						Point newPoint = graph.addVertex(x, y);
-						drawVertex(newPoint);
-					}
+			//The center portion's height is 437
+			//top border height is 0 - 50 
+			//bottom border height is 498 - 600
+			if(event.getButton() == MouseButton.PRIMARY) {
+				double x = event.getSceneX();
+				double y = event.getSceneY();
+				//keeping x and y within center border
+				if(y > 50 && y < 498) {
+					//create a new point and turn it into a circle
+					Point newPoint = graph.addVertex(x, y);
+					drawVertex(newPoint);
 				}
+			}
 		});
 	}
 	
@@ -44,7 +47,7 @@ public class GraphView extends BorderPane {
 	 
 	 public void drawEdge(String v1, String v2) {
 		 if(v1.length() == 1 && v2.length() == 1) {
-			 int index1 = (int)v1.charAt(0) - 'A';
+			 int index1 = (int)v1.charAt(0) - 'A'; //use new method here
 			 int index2 = (int)v2.charAt(0) - 'A';
 			 Point p1 = graph.getPoint(index1);
 			 Point p2 = graph.getPoint(index2);
