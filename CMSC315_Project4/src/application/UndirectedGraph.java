@@ -6,7 +6,7 @@
 
 package application;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /*
  - [ ] The second class should be a class that defines the graph. You may use any graph representation that allows an unlimited number of vertices and edges. It should have the following public methods 
@@ -21,10 +21,12 @@ import java.util.ArrayList;
 
 
 public class UndirectedGraph {
-	private int index = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
+	private int nameIndex = 0; //needed to put this here to create a baseline value for the name - once it is called once the first name should be A
+	private int vertexListIndex = 0; //need to be able to put the point in the correct place in the vertex list - this is getting complicated now that it is a list holding an arraylist 
 
 	//the index indicates the name of the point - this could be useful
-	private ArrayList<Point> vertexList = new ArrayList<>();
+//	private ArrayList<Point> vertexList = new ArrayList<>();
+	private List<ArrayList<Point>> vertexList = new ArrayList<>();
 	
 	/* no-constructor */
 	public UndirectedGraph() {
@@ -34,17 +36,19 @@ public class UndirectedGraph {
 	public Point addVertex(double x, double y) {
 		String name = createName();
 		Point point = new Point(x, y, name);
-		vertexList.add(point);
+		vertexList.add(new ArrayList<>());
+		vertexList.get(vertexListIndex).add(point);
+		vertexListIndex++;
 		return point;	
 		//Not really doing anything with this at this point just using it to create a circle in graph view will probably need to store it in a list to create the actual graph
 	}
 	
 	public String createName() {
 		//uses index from global data field to create names through alphabet and uses modulo to control the values to only go from A to Z
-		char name = (char)('A' + index % 26);
+		char name = (char)('A' + nameIndex % 26);
 		//Also want to control the suffix so that we can have an infinite amount of labels
-		int suffix = index / 26;
-		index++;
+		int suffix = nameIndex / 26;
+		nameIndex++;
 		
 		if(suffix == 0) 
 			return String.valueOf(name);
@@ -52,13 +56,15 @@ public class UndirectedGraph {
 			return String.valueOf(name) + suffix;
 	}
 	
-	public Point getPoint(int index) {
-		return vertexList.get(index);
+	public Point getPoint(int i) {
+		//Going into a List that holds ArrayLists so going to the index will go to the corresponding point name ('A' is 0) and then the ArrayList at index 0 should hold the original point
+		System.out.printf("Point is at index %d, its x is %f, its y is %f, it's name is %s\n", i, vertexList.get(i).get(0).getX(), vertexList.get(i).get(0).getY(), vertexList.get(i).get(0).getName());
+		return vertexList.get(i).get(0);
 	}
 	
-//	public void addEdge(int p1, int p2) {
-//		if(vertexList.get(p1) && vertexList.get(p2)) {
-//			
-//		}
-//	}
+	public void addEdge(int i1, Point p1, int i2, Point p2) {
+		//Taking a break - for now having trouble figuring out how to create a record of the edges.
+		//Do i create a new arraylist and hold lists at each index? but then if there is nothing in the list i can't search the indexes if that makes sense
+		//so then should i modify the vertice list to be a list of lists and then store another point if it connects to the point at that index???
+	}
 }

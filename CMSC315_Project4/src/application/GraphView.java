@@ -72,6 +72,7 @@ public class GraphView extends BorderPane {
 			 int index2 = (int)v2.charAt(0) - 'A';
 			 Point p1 = graph.getPoint(index1);
 			 Point p2 = graph.getPoint(index2);
+			 graph.addEdge(index1, p1, index2, p2);
 			 getChildren().add(new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY()));
 		 }
 		 
