@@ -43,6 +43,9 @@ public class GraphGUI extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		}
+		catch(IndexOutOfBoundsException ex) {
+			System.out.print(ex);
+		}
 		catch(Exception ex) {
 			System.out.print(ex);
 		}
@@ -74,7 +77,7 @@ public class GraphGUI extends Application {
 				new Label("Vertex 2"), tfVertexTwo);
 		
 		//How to put an error message on the textfield?
-		btnEdge.setOnAction(event -> graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText()));
+		btnEdge.setOnAction(event ->	graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText()));
 	
 		return hBox;
 	}

@@ -22,18 +22,10 @@ import javafx.scene.text.*;
 	- [ ] a method that is called to draw edges. 
  */
 
-/*
-THOUGHTS 
-- potienal problem with trying to get the text field information will probably need to change where the variable gets created? definitely something that will come up later 
-- Maybe using grid pane would be better than border pane?? would it matter when it comes to placing actual vertices? 
-- Don't want the screen to be resizable
- */
+
 
 
 public class GraphView extends BorderPane {
-	//the index indicates the name of the point - this could be useful
-//	ArrayList<Point> vertexList = new ArrayList<>();
-
 	UndirectedGraph graph = new UndirectedGraph();
 	
 	/* no-arg constructor */
@@ -58,25 +50,23 @@ public class GraphView extends BorderPane {
 				}
 		});
 	}
-	
-	//A little confused as to how drawEdge and addEdge should work together
-	//Maybe when passing the indices to drawEdge so long as the vertices exist we add on to an adjacency list? And that will keep track of edges? 
-	//for now just focus on creating a line and then we'll get to errors and validating 
-	 public void drawEdge(String v1, String v2){
+	 
+	 public void drawEdge(String v1, String v2) throws IndexOutOfBoundsException{
 		 //If in lower case change to upper case 
 		 
 		 //Validate that the vertices exist
+		 	//IndexOutOfBoundsException("One of the vertices not found");
+		 
 		 
 		 if(v1.length() == 1 && v2.length() == 1) {
 			 int index1 = (int)v1.charAt(0) - 'A';
 			 int index2 = (int)v2.charAt(0) - 'A';
+		//Will need to validate points before getting here - come back to it
 			 Point p1 = graph.getPoint(index1);
 			 Point p2 = graph.getPoint(index2);
 			 graph.addEdge(index1, p1, index2, p2);
 			 getChildren().add(new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY()));
 		 }
-		 
-		 //
 	 }
 
 }
