@@ -2,7 +2,7 @@
  * CMSC315 Project 4
  * Due Date: 3/5/24
  * Decription: 
- */
+ */ 
 
 package application;
 	
@@ -106,6 +106,10 @@ public class GraphGUI extends Application {
 		btnBfs.setOnAction(e -> {
 			String bfs = graph.bfs().toString();
 			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
+		});
+		btnConnected.setOnAction(e -> {
+//			String message = graph.isConnected() ? "The graph is connected" : "The graph is not connected";
+			tfMessage.setText(graph.isConnected() ? "The graph is connected" : "The graph is not connected");
 		});
 		
 		return vBox;
