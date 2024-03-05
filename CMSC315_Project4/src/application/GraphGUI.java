@@ -79,7 +79,6 @@ public class GraphGUI extends Application {
 					setUpperCase(tfVertexOne.getText());
 				String vertex2 = isUpperCase(tfVertexTwo.getText()) ? tfVertexTwo.getText() : 
 					setUpperCase(tfVertexTwo.getText());
-				System.out.println("Test 3");
 				
 				//Check the vertex exists in vertex list
 				if(graph.isVertex(vertex1) && graph.isVertex(vertex2)) {
@@ -127,8 +126,10 @@ public class GraphGUI extends Application {
 			String bfs = graph.bfs().toString();
 			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
 		});
-		btnConnected.setOnAction(e -> tfMessage.setText(graph.isConnected() ? "The graph is connected" : "The graph is not connected"));
-		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : "The graph doesn't have cycles."));
+		btnConnected.setOnAction(e -> tfMessage.setText(graph.isConnected() ? "The graph is connected" :
+			"The graph is not connected"));
+		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : 
+			"The graph doesn't have cycles."));
 		
 		return vBox;
 	}
