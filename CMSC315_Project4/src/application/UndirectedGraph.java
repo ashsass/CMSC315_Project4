@@ -137,4 +137,13 @@ public class UndirectedGraph {
 		  
 		  return searchOrder;
 	  }
+	  
+	  public boolean isConnected() {
+		  //if the graph is connected then the neighbors for A should be all of the possible vertices on the graph 
+		  List<String> bfs = bfs();
+		  if(bfs.size() == vertexList.size())
+			  return true;
+		  else
+			  return false;
+	  }
 }
