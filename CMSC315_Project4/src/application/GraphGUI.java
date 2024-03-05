@@ -107,6 +107,10 @@ public class GraphGUI extends Application {
 			String bfs = graph.bfs().toString();
 			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
 		});
+		btnConnected.setOnAction(e -> {
+//			String message = graph.isConnected() ? "The graph is connected" : "The graph is not connected";
+			tfMessage.setText(graph.isConnected() ? "The graph is connected" : "The graph is not connected");
+		});
 		
 		return vBox;
 	}
