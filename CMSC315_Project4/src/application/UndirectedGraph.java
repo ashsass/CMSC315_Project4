@@ -146,4 +146,8 @@ public class UndirectedGraph {
 		  else
 			  return false;
 	  }
+	  
+	  public boolean hasCycles() {
+		  return false;
+	  }
 }
