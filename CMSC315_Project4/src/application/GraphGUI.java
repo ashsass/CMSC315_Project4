@@ -17,12 +17,12 @@ import javafx.geometry.*;
 public class GraphGUI extends Application {
 	private GraphView graphView;
 	private UndirectedGraph graph;
-	private TextField tfMessage = new TextField();
-	private Button btnEdge;
 	private Button btnConnected;
+	private Button btnBfs;
 	private Button btnCycles;
 	private Button btnDfs;
-	private Button btnBfs;
+	private Button btnEdge;
+	private TextField tfMessage = new TextField();
 	private TextField tfVertexOne; 
 	private TextField tfVertexTwo;
 	
@@ -53,44 +53,6 @@ public class GraphGUI extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	public void setEventHandlers() {
-		//Add edge handler
-		btnEdge.setOnAction(event ->	{
-			tfMessage.clear();
-			//Verify the vertex input is a letter
-			if(isLetter(tfVertexOne.getText()) && isLetter(tfVertexTwo.getText())) {
-				//Verify that the vertex input is uppercase, if not set to uppercase
-				String vertex1 = isUpperCase(tfVertexOne.getText()) ? tfVertexOne.getText() : 
-					setUpperCase(tfVertexOne.getText());
-				String vertex2 = isUpperCase(tfVertexTwo.getText()) ? tfVertexTwo.getText() : 
-					setUpperCase(tfVertexTwo.getText());
-				
-				//Check the vertex exists in vertex list
-				if(graph.isVertex(vertex1) && graph.isVertex(vertex2)) {
-					graphView.drawEdge(vertex1, vertex2);
-				}
-				else 
-					tfMessage.setText("Vertex not found.");
-			}
-			else
-				tfMessage.setText("Please enter a valid letter.");
-		});
-		
-		btnDfs.setOnAction(e -> {
-			String dfs = graph.dfs().toString();
-			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
-		});
-		btnBfs.setOnAction(e -> {
-			String bfs = graph.bfs().toString();
-			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
-		});
-		btnConnected.setOnAction(e -> tfMessage.setText(graph.isConnected() ? "The graph is connected" :
-			"The graph is not connected"));
-		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : 
-			"The graph doesn't have cycles."));
-	}
-	
 	
 	public HBox getTopBorder() {
 		/* creating hbox */
@@ -135,6 +97,43 @@ public class GraphGUI extends Application {
 		
 		return vBox;
 	} 
+	
+	public void setEventHandlers() {
+		//Add edge handler
+		btnEdge.setOnAction(event ->	{
+			tfMessage.clear();
+			//Verify the vertex input is a letter
+			if(isLetter(tfVertexOne.getText()) && isLetter(tfVertexTwo.getText())) {
+				//Verify that the vertex input is uppercase, if not set to uppercase
+				String vertex1 = isUpperCase(tfVertexOne.getText()) ? tfVertexOne.getText() : 
+					setUpperCase(tfVertexOne.getText());
+				String vertex2 = isUpperCase(tfVertexTwo.getText()) ? tfVertexTwo.getText() : 
+					setUpperCase(tfVertexTwo.getText());
+				
+				//Check the vertex exists in vertex list
+				if(graph.isVertex(vertex1) && graph.isVertex(vertex2)) {
+					graphView.drawEdge(vertex1, vertex2);
+				}
+				else 
+					tfMessage.setText("Vertex not found.");
+			}
+			else
+				tfMessage.setText("Please enter a valid letter.");
+		});
+		
+		btnDfs.setOnAction(e -> {
+			String dfs = graph.dfs().toString();
+			tfMessage.setText("Depth First Search: " + dfs.substring(1, dfs.length() - 1));
+		});
+		btnBfs.setOnAction(e -> {
+			String bfs = graph.bfs().toString();
+			tfMessage.setText("Breadth First Search: " + bfs.substring(1, bfs.length() - 1));
+		});
+		btnConnected.setOnAction(e -> tfMessage.setText(graph.isConnected() ? "The graph is connected" :
+			"The graph is not connected"));
+		btnCycles.setOnAction(e -> tfMessage.setText(graph.hasCycles() ? "The graph has cycles" : 
+			"The graph doesn't have cycles."));
+	}
 	
 	public boolean isUpperCase(String name) {
 		return !Character.isLowerCase(name.charAt(0));
