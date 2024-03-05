@@ -71,7 +71,14 @@ public class GraphGUI extends Application {
 				new Label("Vertex 2"), tfVertexTwo);
 		
 		//How to put an error message on the textfield?
-		btnEdge.setOnAction(event ->	graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText()));
+		btnEdge.setOnAction(event ->	{
+			tfMessage.clear();
+			if(graph.isVertex(tfVertexOne.getText()) && graph.isVertex(tfVertexTwo.getText())) {
+				graphView.drawEdge(tfVertexOne.getText(), tfVertexTwo.getText());
+			}
+			else 
+				tfMessage.setText("Vertex not found");
+		});
 	
 		return hBox;
 	}
