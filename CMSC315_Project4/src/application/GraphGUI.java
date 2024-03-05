@@ -1,7 +1,7 @@
 /* Name: Ashlyn Sassaman
  * CMSC315 Project 4
  * Due Date: 3/5/24
- * Decription: 
+ * Decription: Display the GUI to allow a user to interact with a graph. Add vertices by clickling left mouse. Holds event listeners for buttons.
  */ 
 
 package application;

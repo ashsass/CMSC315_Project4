@@ -1,7 +1,7 @@
 /* Name: Ashlyn Sassaman
  * CMSC315 Project 4
  * Due Date: 3/5/24
- * Decription:
+ * Decription: The class that extends the pane for the graph GUI. Draws the points and draws the edge when the add edge button has been clicked. 
  */
 
 package application;
@@ -47,8 +47,8 @@ public class GraphView extends BorderPane {
 	 
 	 public void drawEdge(String v1, String v2) {
 		 if(v1.length() == 1 && v2.length() == 1) {
-			 int index1 = (int)v1.charAt(0) - 'A'; //use new method here
-			 int index2 = (int)v2.charAt(0) - 'A';
+			 int index1 = graph.calculateNameIndex(v1); //use new method here
+			 int index2 = graph.calculateNameIndex(v2);
 			 Point p1 = graph.getPoint(index1);
 			 Point p2 = graph.getPoint(index2);
 			 graph.addEdge(index1, p1, index2, p2);

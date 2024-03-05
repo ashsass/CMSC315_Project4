@@ -1,7 +1,7 @@
 /* Name: Ashlyn Sassaman
  * CMSC315 Project 4
  * Due Date: 3/5/24
- * Decription:
+ * Decription: The actual graph used in the graph GUI. Holds vertices that are created in the graph by creating an instance of the Point class. Controls the methods that determines if the graph has cycles, if the graph is connected, and the breadth/depth first searches. 
  */ 
 
 package application;
@@ -144,9 +144,7 @@ public class UndirectedGraph {
 	  }
 	
 	public boolean isVertex(String name) {
-		char charName = name.charAt(0);
-		
-		int index = (int)charName - 'A';
+		int index = calculateNameIndex(name);
 		if(index > vertexList.size() - 1)
 			return false;
 	

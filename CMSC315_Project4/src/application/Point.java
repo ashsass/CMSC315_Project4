@@ -1,7 +1,7 @@
 /* Name: Ashlyn Sassaman
  * CMSC315 Project 4
  * Due Date: 3/5/24
- * Decription:
+ * Decription: Holds the x coordinate, the y coordinate, and the name for the point on the graph. 
  */
 
 package application;
