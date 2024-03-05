@@ -10,42 +10,7 @@ import java.util.*;
 
 public class UndirectedGraph {
 	private int nameIndex = 0; //first name should be A
-	private int vertexListIndex = 0; //need to be able to put the point in the correct place in the vertex list 
-	
-//	public static void main(String[] args) {
-//		vertexList.add(new ArrayList<>());
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-//		vertexListIndex++;
-//		vertexList.add(new ArrayList<>());
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-//		vertexListIndex++;
-//		vertexList.add(new ArrayList<>());
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-//		vertexListIndex++;
-//		vertexList.add(new ArrayList<>());
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "D"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "B"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "C"));
-//		vertexListIndex++;
-//		vertexList.add(new ArrayList<>());
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "E"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-//		vertexListIndex++;
-//		vertexList.add(new ArrayList<>());
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "F"));
-//		vertexList.get(vertexListIndex).add(new Point(0.0, 0.0, "A"));
-//		hasCycles();
-//	}
-
-	/* the index indicates the name of the point */
+	private int vertexListIndex = 0; //keeps track of first index in the adjaceny list
 	private List<ArrayList<Point>> vertexList = new ArrayList<>();
 	
 	/* no-constructor */
@@ -62,11 +27,11 @@ public class UndirectedGraph {
 		return point;
 	}
 	
+	/* uses index from global data field to create names through alphabet
+	 * uses modulo to control the values to only go from A to Z */
 	public String createName() {
-		//uses index from global data field to create names through alphabet and uses modulo to control the values to only go from A to Z
 		char name = (char)('A' + nameIndex % 26);
-		//Also want to control the suffix so that we can have an infinite amount of labels
-		int suffix = nameIndex / 26;
+		int suffix = nameIndex / 26; //creates a suffix to repeat the alphabet labels
 		nameIndex++;
 		
 		if(suffix == 0) 
@@ -87,7 +52,10 @@ public class UndirectedGraph {
 	
 	public List<String> dfs() {
 		int start = 0; //Start at A
+	
+		//Create list
 	    List<String> searchOrder = new ArrayList<>();
+	    
 	    //Keep track of visited indices
 	    boolean[] isVisited = new boolean[vertexList.size()];
 
@@ -111,8 +79,7 @@ public class UndirectedGraph {
 	  }
 	  
 	  public List<String> bfs() {
-		  //Start at A
-		  int start = 0; 
+		  int start = 0; //Start at A
 		  
 		  //Create lists
 		  List<String> searchOrder = new ArrayList<>();
@@ -140,8 +107,8 @@ public class UndirectedGraph {
 		  return searchOrder;
 	  }
 	  
+	  /* every vertice must be connected so the size of a bfs list should be the same as the vertex list */
 	  public boolean isConnected() {
-		  //if the graph is connected then the neighbors for A should be all of the possible vertices on the graph 
 		  List<String> bfs = bfs();
 		  if(bfs.size() == vertexList.size())
 			  return true;
@@ -149,6 +116,7 @@ public class UndirectedGraph {
 			  return false;
 	  }
 	  
+	  /* Modify dfs so that if a node has been visited but it is not A then it has a cycle */
 	  public boolean hasCycles() {
 		  int start = 0; //Start at A
 		  List<String> searchOrder = new ArrayList<>();
