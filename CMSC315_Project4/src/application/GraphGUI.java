@@ -132,7 +132,7 @@ public class GraphGUI extends Application {
 			"The graph doesn't have cycles."));
 		
 		return vBox;
-	}
+	} 
 	
 	public boolean isUpperCase(String name) {
 		return !Character.isLowerCase(name.charAt(0));
